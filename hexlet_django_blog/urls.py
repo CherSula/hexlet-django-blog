@@ -18,6 +18,7 @@ from django.urls import path
 from hexlet_django_blog import views
 
 urlpatterns = [
-    path('', views.index), # <- добавляем эту строчку
+    path('', views.index),  # <- добавляем эту строчку
+    path('about/', views.about),  # <- добавляем эту строчку
     path('admin/', admin.site.urls),
 ]

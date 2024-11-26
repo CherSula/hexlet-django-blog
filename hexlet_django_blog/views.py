@@ -4,15 +4,12 @@ from django.views.generic.base import TemplateView
 
 class HomePageView(TemplateView):
 
-    self.template_name = 'index.html'
+    template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
-        self.context = super().get_context_data(**kwargs)
-        self.context['who'] = 'World'
-        return self.context
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, self.context)
+        context = super().get_context_data(**kwargs)
+        context['who'] = 'World'
+        return context
 
 
 def about(request):

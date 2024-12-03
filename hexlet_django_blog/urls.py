@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from hexlet_django_blog import views
-from hexlet_django_blog.views import HomePageView
+# from hexlet_django_blog import views
+from .views import HomePageView, AboutView
 
 
 urlpatterns = [
     # path('', views.index),
-    path('', HomePageView.as_view()),
-    path('about/', views.about),
-    path('articles/', include('hexlet_django_blog.article.urls')),
+    path('', HomePageView.as_view(), name='index'),
+    path('about/', AboutView.as_view(), name='about'),
+    path('articles/', include('hexlet_django_blog.article.urls'), name='articles'),
     path('admin/', admin.site.urls),
 ]

@@ -5,20 +5,6 @@ from django.views import View
 from hexlet_django_blog.article.models import Article
 
 
-# class Index(View):
-
-# def get(self, request, tags, article_id):
-#     # return HttpResponse('article')
-#     tags = ['статьи', 'articles', 'article', 'статья']
-#     return render(
-#         request,
-#         'index.html',
-#         context={'tags': tags, 'article_id': article_id},
-#     )
-
-# def home(self, request):
-#     return redirect(reverse('article', args=['python', 42]))
-
 class Index(View):
 
     def get(self, request, *args, **kwargs):
@@ -29,6 +15,14 @@ class Index(View):
 
 
 class ArticleView(View):
-    def get(self, request, **kwargs):
+    def get(self, request, *args, **kwargs):
         article = get_object_or_404(Article, id=kwargs["id"])
         return render(request, "articles/show.html", context={"article": article})
+
+
+class ArticleCommentsView(View):
+
+    def get(self, request, *args, **kwargs):
+        comment = get_object_or_404(Comment, id=kwargs['id'], article__id=kwargs['article_id'])
+
+        return render(request, "articles/comments.html", context={"comment": comment})
